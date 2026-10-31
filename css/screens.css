@@ -1,0 +1,90 @@
+/* Screen-specific layout (home, lab). */
+
+.soroban-stage { display: flex; justify-content: center; padding: 8px 0 4px; }
+
+.controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; align-items: end; }
+.controls--buttons { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 12px; }
+.inline { display: flex; gap: 8px; align-items: center; }
+.inline .input { flex: 1; min-width: 0; }
+
+.problem-list { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.problem {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px;
+  padding: 10px 12px;
+  background: var(--surface-2); border-radius: var(--radius-sm);
+}
+.problem__meta { width: 100%; font-size: 0.8rem; color: var(--muted); }
+.problem__text { font-size: 1.2rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.problem__answer { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---- start screen ---- */
+.seg--players .seg__item { flex: 0 1 auto; }
+.seg__text--player { gap: 8px; justify-content: flex-start; }
+.player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 12rem; }
+
+.level-list { display: grid; gap: 8px; }
+.level-item { position: relative; display: block; cursor: pointer; }
+.level-item .seg__input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.level-item__body {
+  display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 10px 12px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  transition: background var(--dur), border-color var(--dur);
+}
+.level-item__num {
+  flex: none; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 700; border-radius: 50%; background: var(--surface-2);
+}
+.level-item__text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.level-item__name { font-weight: 600; }
+.level-item__desc { color: var(--muted); font-size: 0.85rem; }
+.level-item .seg__input:checked + .level-item__body { border-color: var(--accent); background: var(--accent-weak); }
+.level-item .seg__input:checked + .level-item__body .level-item__num { background: var(--accent); color: var(--on-accent); }
+.level-item .seg__input:focus-visible + .level-item__body { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* ---- students ---- */
+.student-list { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 12px; }
+.student { padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.student.is-active { border-color: var(--accent); }
+.student__head { display: flex; gap: 12px; align-items: center; }
+.student__info { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; }
+.student__name { font-size: 1.05rem; overflow-wrap: anywhere; }
+.student__meta { color: var(--muted); font-size: 0.85rem; }
+.student__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.student__history { margin-top: 8px; }
+.history { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.history__row { display: flex; flex-wrap: wrap; gap: 2px 10px; padding: 8px 10px; background: var(--surface-2); border-radius: var(--radius-sm); font-size: 0.9rem; }
+.history__date { color: var(--muted); }
+
+/* ---- game ---- */
+.game-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 16px; }
+.game-head__left { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; min-width: 0; }
+.game-head__counter { font-weight: 700; }
+.game-head__stat { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+
+.stage { display: flex; flex-direction: column; gap: 16px; align-items: stretch; }
+.lead--center, .field__hint--center { text-align: center; }
+
+.sum { align-self: center; display: inline-flex; flex-direction: column; align-items: flex-end; padding: 12px 20px; min-width: 9rem;
+  font-size: 2rem; font-weight: 700; font-variant-numeric: tabular-nums; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.sum__row { display: flex; justify-content: flex-end; gap: 14px; width: 100%; line-height: 1.35; }
+.sum__row--last { border-bottom: 3px solid var(--text); padding-bottom: 4px; margin-bottom: 2px; }
+.sum__sign { color: var(--accent); }
+.equation { text-align: center; padding: 20px; font-size: 2.4rem; font-weight: 700; font-variant-numeric: tabular-nums; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.flash { display: flex; align-items: center; justify-content: center; min-height: 180px; font-size: 5rem; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--accent); }
+
+.answer-area { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.answer-display { display: block; width: min(100%, 320px); min-height: 64px; padding: 8px 14px; text-align: right; font-size: 2.2rem; font-weight: 700; font-variant-numeric: tabular-nums;
+  background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius-sm); }
+
+.feedback { display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+.feedback--ok { background: var(--accent-weak); border-color: var(--accent); }
+.feedback--bad { background: var(--surface-2); border-color: var(--danger); }
+.feedback__title { font-size: 1.1rem; }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 0; }
+.stat { padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.stat__label { color: var(--muted); font-size: 0.85rem; }
+.stat__value { margin: 0; font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.result-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+
+.level-item__badge { align-self: flex-start; margin-top: 4px; }

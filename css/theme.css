@@ -1,0 +1,89 @@
+/* Design tokens. One accent colour; light + dark; system by default. */
+
+:root {
+  --font: system-ui, -apple-system, "Segoe UI", "Noto Sans Thai", "Sarabun", "Thonburi",
+    "Leelawadee UI", Tahoma, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --surface-2: #f2f1ec;
+  --text: #1c1b18;
+  --muted: #5f5d55;
+  --border: #deddd6;
+  --accent: #c2410c;
+  --accent-hover: #9a3412;
+  --accent-weak: rgba(194, 65, 12, 0.12);
+  --on-accent: #ffffff;
+  --danger: #b91c1c;
+  --on-danger: #ffffff;
+  --focus: #1d4ed8;
+  --warn-bg: #fef3c7;
+  --warn-text: #78350f;
+
+  /* soroban */
+  --sb-frame: #6b675b;
+  --sb-bead: #8a867a;
+  --sb-label: #5f5d55;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --dur: 160ms; /* every transition uses this, so reduced motion is one switch */
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211;
+    --surface: #1c1c1a;
+    --surface-2: #262623;
+    --text: #efeee9;
+    --muted: #a8a69c;
+    --border: #36352f;
+    --accent: #fb923c;
+    --accent-hover: #fdba74;
+    --accent-weak: rgba(251, 146, 60, 0.16);
+    --on-accent: #1a1209;
+    --danger: #f87171;
+    --on-danger: #1c0a0a;
+    --focus: #93c5fd;
+    --warn-bg: #3b2e0a;
+    --warn-text: #fde68a;
+    --sb-frame: #9d9a8e;
+    --sb-bead: #8a867a;
+    --sb-label: #a8a69c;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #121211;
+  --surface: #1c1c1a;
+  --surface-2: #262623;
+  --text: #efeee9;
+  --muted: #a8a69c;
+  --border: #36352f;
+  --accent: #fb923c;
+  --accent-hover: #fdba74;
+  --accent-weak: rgba(251, 146, 60, 0.16);
+  --on-accent: #1a1209;
+  --danger: #f87171;
+  --on-danger: #1c0a0a;
+  --focus: #93c5fd;
+  --warn-bg: #3b2e0a;
+  --warn-text: #fde68a;
+  --sb-frame: #9d9a8e;
+  --sb-bead: #8a867a;
+  --sb-label: #a8a69c;
+  --shadow: none;
+  color-scheme: dark;
+}
+
+/* Reduced motion: OS preference OR the in-app setting. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur: 0ms; }
+}
+:root.reduce-motion { --dur: 0ms; }
