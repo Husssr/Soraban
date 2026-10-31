@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Soroban unit tests</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; max-width: 860px; margin: 24px auto; padding: 0 16px; }
+    h1 { font-size: 1.3rem; }
+    #summary { padding: 10px 14px; border-radius: 8px; font-weight: 700; background: #eee; }
+    #summary.pass { background: #d1fae5; color: #065f46; }
+    #summary.fail { background: #fee2e2; color: #991b1b; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 4px 0; border-bottom: 1px solid #eee; }
+    li.ok::before { content: "\2713  "; color: #059669; font-weight: 700; }
+    li.bad::before { content: "\2717  "; color: #dc2626; font-weight: 700; }
+    .err { display: block; color: #b91c1c; font-family: ui-monospace, monospace; font-size: 13px; margin-left: 1.4em; }
+  </style>
+</head>
+<body>
+  <h1>Soroban unit tests</h1>
+  <p>Bead model, PRNG, router, settings, i18n dictionaries, problem engine, scoring, validator.</p>
+  <div id="summary">Running…</div>
+  <ul id="list"></ul>
+  <script type="module">
+    import { runAll } from './js/tests/suite.js';
+    const list = document.getElementById('list');
+    const summary = document.getElementById('summary');
+    const { passed, failed } = await runAll((r) => {
+      const li = document.createElement('li');
+      li.className = r.ok ? 'ok' : 'bad';
+      li.textContent = r.name;
+      if (!r.ok) {
+        const e = document.createElement('span');
+        e.className = 'err';
+        e.textContent = r.error;
+        li.append(e);
+      }
+      list.append(li);
+    });
+    summary.textContent = failed ? `${failed} failed, ${passed} passed` : `All ${passed} tests passed`;
+    summary.className = failed ? 'fail' : 'pass';
+    document.title = (failed ? 'FAIL' : 'PASS') + ' · Soroban unit tests';
+    window.__testResult = { passed, failed };
+  </script>
+</body>
+</html>
